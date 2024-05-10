@@ -1,13 +1,14 @@
-name: learn-github-actions
-run-name: ${{ github.actor }} is learning GitHub Actions
+name: CI
+run-name: Run Ansible Playbook
 on: [push]
 jobs:
-  check-bats-version:
+  run-playbooks:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
         with:
-          node-version: '20'
-      - run: npm install -g bats
-      - run: bats -v
+          submodules: true
+      - name: Run Ansible Playbook
+        run: |
+          ansible-playbook playbook.yml

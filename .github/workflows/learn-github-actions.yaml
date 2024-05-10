@@ -11,4 +11,5 @@ jobs:
           submodules: true
       - name: Run Ansible Playbook
         run: |
-          ansible-playbook playbook.yml
+          ansible-playbook -i hosts.ini playbook.yml
+          
